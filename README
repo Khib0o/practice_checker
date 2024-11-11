@@ -1,0 +1,35 @@
+Things to do to be able to run the program:
+
+-Install Python (Programming language) https://www.python.org/
+
+-Open a command invite in the folder where run.bat, scrapper.py and requirements.txt are present (replace the path in the path bar
+by cmd and type enter)
+
+-Run the command:
+
+pip install -r requirements.txt
+
+You should be ready to then start the program
+Those steps should only be executed once
+
+
+----------------------------------------------------------------------------------------------------
+Running the program :
+
+-If on windows just click on the run.bat
+
+OR
+
+-Go into the command line interface again and type:
+python scrapper.py
+
+
+----------------------------------------------------------------------------------------------------
+Comments:
+
+If any bug, contact me
+
+All the results will be stored in a file named available_slots.txt in the same folder as the other files
+
+I'll try to update this once in a while so please feel free to redownload if the files have changed
+
