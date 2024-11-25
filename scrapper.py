@@ -3,6 +3,7 @@ link_string = "https://www.cm2.epss.jp/sendai/web/view/user/homeIndex.html"
 from scrapy.crawler import CrawlerProcess
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from scrapy.selector import Selector
@@ -81,13 +82,31 @@ class SimpleSeleniumSpider(scrapy.Spider):
     name = "selenium_spider"
     start_urls = [link_string]  # Replace with your target URL
 
-    options = Options()
-    options.headless = True
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    
 
     def __init__(self):
+
+        op = Options()
+        op.add_argument("--headless")
+        op.add_argument("--disable-gpu")
+        op.add_argument("--disable-logging")
+
+        op.add_argument("--disable-in-process-stack-traces")
+        op.add_argument("--disable-crash-reporter")
+        op.add_argument("--log-level=3")
+
+        op.add_experimental_option("excludeSwitches", ["enable-logging"])
+        
+
+
+        ser = Service()
+        ser.EnableVerboseLogging = False
+        ser.SuppressInitialDiagnosticInformation = True
+        ser.HideCommandPromptWindow = True
+
+
         # Initialize the WebDriver
-        self.driver = webdriver.Chrome()  # Replace with webdriver.Firefox() if using Firefox
+        self.driver = webdriver.Chrome(service=ser, options=op)  # Replace with webdriver.Firefox() if using Firefox
 
     def parse(self, response):
 
